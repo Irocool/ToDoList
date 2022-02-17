@@ -56,7 +56,7 @@ final class Task: TaskProtocol {
     }
     
     init(text: String) {
-        self.id = 0
+        self.id = TaskStorage.shared.getNextID()
         self.isCompleted = false
         self.text = text
     }
@@ -68,6 +68,9 @@ final class Task: TaskProtocol {
     }
 }
 
+typealias Memento = Data
+
+extension Task: Codable { }
 
 extension Task: CustomStringConvertible {
     var description: String {
